@@ -2,6 +2,7 @@ package com.handy.wing.handycodetest;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,6 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.handy.wing.handycodetest.TabOneFragment;
+import com.handy.wing.handycodetest.AppConfig;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,17 +54,19 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Email to us", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
     }
+
 
 
     @Override
@@ -68,21 +74,6 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -113,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_page, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -134,7 +125,19 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            Fragment fragment = null;
+            switch (position) {
+                case 0:
+                    fragment = Fragment.instantiate(getApplication(), TabOneFragment.class.getName());
+                    break;
+                case 1:
+                    fragment = Fragment.instantiate(getApplication(), TabOneFragment.class.getName());
+                    break;
+                case 2:
+                    fragment = Fragment.instantiate(getApplication(), TabOneFragment.class.getName());
+                    break;
+            }
+            return fragment;
         }
 
         @Override
@@ -147,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return AppConfig.tabBarNameOne;
                 case 1:
-                    return "SECTION 2";
+                    return  AppConfig.tabBarNameTwo;
                 case 2:
-                    return "SECTION 3";
+                    return  AppConfig.tabBarNameThree;
             }
             return null;
         }
