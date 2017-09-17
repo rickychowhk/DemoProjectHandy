@@ -33,11 +33,11 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
     ArrayList<HashMap<String, String>> demoArrayList = new ArrayList<HashMap<String, String>>();
     JSONArray demoArray = null;
     DemoListAdapter ap;
-    static final String TAG_ID = "id";
-    static final String TAG_TITLE = "title";
-    static final String TAG_DESC= "desc";
-    static final String TAG_IMG= "img";
-    String LOG_TAG = "TabOneFragment";
+    static final String TAG_ID = AppConfig.api_Id;
+    static final String TAG_TITLE = AppConfig.api_Title;
+    static final String TAG_DESC= AppConfig.api_Desc;
+    static final String TAG_IMG= AppConfig.api_Img;
+    String LOG_TAG = AppConfig.tabBarNameOne;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,8 +77,8 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
             jsonObject = JSONfunctions
                     .getJSONfromURL(AppConfig.server_domain+AppConfig.api_Path+AppConfig.demo_List);
             try {
-                success = jsonObject.getInt("success");
-                demoArray = jsonObject.getJSONArray("demo_list");
+                success = jsonObject.getInt(AppConfig.success);
+                demoArray = jsonObject.getJSONArray(AppConfig.demo_Array);
 
                 for (int i = 0; i < demoArray.length(); i++) {
                     HashMap<String, String> map = new HashMap<String, String>();
@@ -92,7 +92,7 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
                 }
 
             } catch (JSONException e) {
-                Log.e("Error", e.getMessage());
+                Log.e(AppConfig.alert_Errortitle, e.getMessage());
                 e.printStackTrace();
             }
             return null;

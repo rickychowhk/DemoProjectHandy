@@ -66,8 +66,9 @@ public class DemoListAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View arg0) {
-                HashMap<String, String> resultp = new HashMap<String, String>();
-                resultp = data.get(position);
+//                itemOnClick Handling
+//                HashMap<String, String> resultp = new HashMap<String, String>();
+//                resultp = data.get(position);
 
             }
         });

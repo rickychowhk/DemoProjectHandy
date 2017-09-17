@@ -15,6 +15,9 @@ public class AppConfig {
     static String api_Desc = "desc";
     static String api_Img = "img";
 
+    static String success = "success";
+    static String demo_Array = "demo_list";
+
     static String tabBarNameOne = "TAB1";
     static String tabBarNameTwo = "TAB2";
     static String tabBarNameThree = "TAB3";
