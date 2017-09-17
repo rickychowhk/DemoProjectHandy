@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,10 +17,11 @@ import java.util.HashMap;
 
 public class DemoListAdapter extends BaseAdapter {
     TextView title_lbl,desc_lbl;
+    ImageView img;
     Context context;
     LayoutInflater inflater;
     ArrayList<HashMap<String, String>> data;
-    //ImageLoader imageLoader;
+    ImageLoader imagesLoader;
     HashMap<String, String> resultp = new HashMap<String, String>();
 
 
@@ -27,7 +29,7 @@ public class DemoListAdapter extends BaseAdapter {
                            ArrayList<HashMap<String, String>> demoArrayList) {
         this.context = context;
         data = demoArrayList;
-        //imagesLoader = new ImageLoaderMessage(context);
+        imagesLoader = new ImageLoader(context);
     }
 
     @Override

@@ -10,6 +10,11 @@ public class AppConfig {
     static String api_Path = "app/api/";
     static String demo_List = "demo_list.php";
 
+    static String api_Id = "id";
+    static String api_Title = "title";
+    static String api_Desc = "desc";
+    static String api_Img = "img";
+
     static String tabBarNameOne = "TAB1";
     static String tabBarNameTwo = "TAB2";
     static String tabBarNameThree = "TAB3";

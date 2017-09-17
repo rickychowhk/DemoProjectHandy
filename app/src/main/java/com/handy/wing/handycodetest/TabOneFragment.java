@@ -37,6 +37,7 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
     static final String TAG_TITLE = "title";
     static final String TAG_DESC= "desc";
     static final String TAG_IMG= "img";
+    String LOG_TAG = "TabOneFragment";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +51,6 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
 
     public void ConfigUI() {
         lv = (ListView)rootView.findViewById(R.id.lv);
-        new getDemoList().execute();
     }
 
     @Override
@@ -84,10 +84,10 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
                     HashMap<String, String> map = new HashMap<String, String>();
 
                     jsonObject = demoArray.getJSONObject(i);
-                    map.put("id", jsonObject.getString("id"));
-                    map.put("title", jsonObject.getString("title"));
-                    map.put("desc", jsonObject.getString("desc"));
-                    map.put("img", jsonObject.getString("img"));
+                    map.put(AppConfig.api_Id, jsonObject.getString(AppConfig.api_Id));
+                    map.put(AppConfig.api_Title, jsonObject.getString(AppConfig.api_Title));
+                    map.put(AppConfig.api_Desc, jsonObject.getString(AppConfig.api_Desc));
+                    map.put(AppConfig.api_Img, jsonObject.getString(AppConfig.api_Img));
                     demoArrayList.add(map);
                 }
 
@@ -115,5 +115,19 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
                 dialog.show();
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(LOG_TAG, "onResume".toString());
+        new getDemoList().execute();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(LOG_TAG, "onPause".toString());
+        demoArrayList.clear();
     }
 }
