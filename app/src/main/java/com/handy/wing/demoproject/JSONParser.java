@@ -1,6 +1,6 @@
 
  
-package com.handy.wing.handycodetest;
+package com.handy.wing.demoproject;
 
 import android.util.Log;
 

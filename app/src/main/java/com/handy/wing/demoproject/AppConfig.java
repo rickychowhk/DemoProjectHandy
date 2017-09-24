@@ -1,7 +1,7 @@
-package com.handy.wing.handycodetest;
+package com.handy.wing.demoproject;
 
 /**
- * Created by wing on 17/9/2017.
+ * Created by wing on 24/9/2017.
  */
 
 public class AppConfig {
@@ -14,13 +14,14 @@ public class AppConfig {
     static String api_Title = "title";
     static String api_Desc = "desc";
     static String api_Img = "img";
+    static String api_type = "type";
 
     static String success = "success";
     static String demo_Array = "demo_list";
 
-    static String tabBarNameOne = "TAB1";
-    static String tabBarNameTwo = "TAB2";
-    static String tabBarNameThree = "TAB3";
+    static String tabBarNameOne = "CITY GUIDE";
+    static String tabBarNameTwo = "SHOP";
+    static String tabBarNameThree = "EAT";
 
     static String alert_Loading = "Loading";
     static String alert_Errortitle = "Error";

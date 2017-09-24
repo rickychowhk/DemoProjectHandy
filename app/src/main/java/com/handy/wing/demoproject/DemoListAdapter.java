@@ -1,4 +1,4 @@
-package com.handy.wing.handycodetest;
+package com.handy.wing.demoproject;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by wing on 17/9/2017.
+ * Created by wing on 24/9/2017.
  */
 
 public class DemoListAdapter extends BaseAdapter {
@@ -23,7 +24,8 @@ public class DemoListAdapter extends BaseAdapter {
     ArrayList<HashMap<String, String>> data;
     ImageLoader imagesLoader;
     HashMap<String, String> resultp = new HashMap<String, String>();
-
+    private String LOG_TAG = "DemoListAdapter";
+    LinearLayout imgLinear, txtLinear;
 
     public DemoListAdapter(Context context,
                            ArrayList<HashMap<String, String>> demoArrayList) {
@@ -56,11 +58,19 @@ public class DemoListAdapter extends BaseAdapter {
         HashMap<String, String> resultp = new HashMap<String, String>();
         resultp = data.get(position);
 
+        imgLinear = (LinearLayout) itemView.findViewById(R.id.imgLinear);
+        txtLinear = (LinearLayout) itemView.findViewById(R.id.txtLinear);
+
+        if(resultp.get(TabOneFragment.TAG_TYPE).toString().equals("img")){
+            txtLinear.setVisibility(LinearLayout.GONE);
+        }
+
         title_lbl = (TextView)itemView.findViewById(R.id.title);
         title_lbl.setText(resultp.get(TabOneFragment.TAG_TITLE));
         desc_lbl = (TextView)itemView.findViewById(R.id.desc);
         desc_lbl.setText(resultp.get(TabOneFragment.TAG_DESC));
-
+        img = (ImageView)itemView.findViewById(R.id.img);
+        imagesLoader.DisplayImage(resultp.get(TabOneFragment.TAG_IMG), img);
 
         itemView.setOnClickListener(new View.OnClickListener() {
 

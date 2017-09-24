@@ -1,4 +1,4 @@
-package com.handy.wing.handycodetest;
+package com.handy.wing.demoproject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,7 +32,7 @@ public class ImageLoader {
         executorService= Executors.newFixedThreadPool(5);
     }
     
-    final int stub_id = R.drawable.noimage;
+    final int stub_id = R.drawable.noimages;
     public void DisplayImage(String url, ImageView imageView)
     {
         imageViews.put(imageView, url);
@@ -90,15 +90,15 @@ public class ImageLoader {
             BitmapFactory.decodeStream(new FileInputStream(f),null,o);
             
             //Find the correct scale value. It should be the power of 2.
-            final int REQUIRED_SIZE=70;
+            final int REQUIRED_SIZE=60;
             int width_tmp=o.outWidth, height_tmp=o.outHeight;
             int scale=1;
             while(true){
-                if(width_tmp/4<REQUIRED_SIZE || height_tmp/4<REQUIRED_SIZE)
+                if(width_tmp/3<REQUIRED_SIZE || height_tmp/3<REQUIRED_SIZE)
                     break;
                 width_tmp/=15;
                 height_tmp/=15;
-                scale*=1.8;
+                scale*=1.5;
             }
             
             //decode with inSampleSize

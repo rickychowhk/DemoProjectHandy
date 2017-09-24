@@ -1,4 +1,4 @@
-package com.handy.wing.handycodetest;
+package com.handy.wing.demoproject;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.handy.wing.handycodetest", appContext.getPackageName());
+        assertEquals("com.handy.wing.demoproject", appContext.getPackageName());
     }
 }
