@@ -105,26 +105,28 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
         protected void onPostExecute(Void args) {
             mProgressDialog.dismiss();
             if(success == 1){
-                ap = new DemoListAdapter(getActivity(), demoArrayList);
-                lv.setAdapter(ap);
-                lv.setOnScrollListener(new AbsListView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(AbsListView absListView, int i) {
-                        int threshold = 1;
-                        int count = lv.getAdapter().getCount();
-                        if (i == SCROLL_STATE_IDLE) {
-                            if (lv.getLastVisiblePosition() >= count
-                                    - threshold) {
-                                new getMoreDemoList().execute();
+                if(demoArrayList != null) {
+                    ap = new DemoListAdapter(getActivity(), demoArrayList);
+                    lv.setAdapter(ap);
+                    lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(AbsListView absListView, int i) {
+                            int threshold = 1;
+                            int count = lv.getAdapter().getCount();
+                            if (i == SCROLL_STATE_IDLE) {
+                                if (lv.getLastVisiblePosition() >= count
+                                        - threshold) {
+                                    new getMoreDemoList().execute();
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                        @Override
+                        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }else{
                 AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
                 dialog.setTitle(AppConfig.alert_Errortitle);
@@ -183,11 +185,13 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
         protected void onPostExecute(Void args) {
             mProgressDialog.dismiss();
             if(success == 1){
-                int lv_position = lv.getLastVisiblePosition();
-                ap = new DemoListAdapter(getActivity(), demoArrayList);
-                lv.setAdapter(ap);
-                lv.setSelectionFromTop(lv_position, 0);
 
+                if(demoArrayList != null) {
+                    int lv_position = lv.getLastVisiblePosition();
+                    ap = new DemoListAdapter(getActivity(), demoArrayList);
+                    lv.setAdapter(ap);
+                    lv.setSelectionFromTop(lv_position, 0);
+                }
             }else{
                 AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
                 dialog.setTitle(AppConfig.alert_Errortitle);
@@ -215,5 +219,6 @@ public class TabOneFragment extends Fragment implements View.OnClickListener {
         super.onPause();
         Log.d(LOG_TAG, "onPause".toString());
         demoArrayList.clear();
+        ap.notifyDataSetChanged();
     }
 }
